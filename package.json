@@ -1,0 +1,21 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Personal Website with Vue 3",
+  "main": "src/main.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^3.0.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.0",
+    "babel-eslint": "^10.1.0"
+  }
+}
