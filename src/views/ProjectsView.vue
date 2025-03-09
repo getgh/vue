@@ -6,16 +6,17 @@
     <ul v-else>
       <li v-for="(project, index) in projects" :key="index">
         {{ project }}
-        <button class="cus1" @click="removeProject(index)">Remove</button>
+        <button @click="removeProject(index)">Remove</button>
       </li>
     </ul>
     <input v-model="newProject" placeholder="Add a new project" />
-    <button class="cus1" @click="addProject">Add Project</button>
+    <button @click="addProject">Add Project</button>
   </div>
 </template>
 
 <script>
 import { ref, computed } from 'vue';
+import eventBus from '../event-track';
 
 export default {
   name: 'ProjectsView',
@@ -29,11 +30,13 @@ export default {
       if (newProject.value.trim() !== '') {
         projects.value.push(newProject.value);
         newProject.value = '';
+        eventBus.incrementCounter();
       }
     };
 
     const removeProject = (index) => {
       projects.value.splice(index, 1);
+      eventBus.incrementCounter();
     };
 
     return {
@@ -46,9 +49,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.projects {
-  padding: 20px;
-}
-</style>

@@ -14,6 +14,7 @@
           <label for="message">Message:</label>
           <textarea v-model="message" id="message" required></textarea>
         </div>
+        <p>Once you submit it, the information will saved in your localstorage. And you sould see the information there even after you refresh the page. </p>
         <button type="submit">Submit</button>
       </form>
     </div>

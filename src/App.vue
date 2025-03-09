@@ -6,8 +6,8 @@
       <router-link to="/contact">Contact</router-link>
     </nav>
     <div class="counter-section">
-      <p>Button Clicks: {{ counter }}</p>
-      <button @click="incrementCounter">Click Me</button>
+      <p>Button Clicks: {{ counter }} </p>
+      <h4>(🤖Notice: Button Clicks would track you button you click on the website.)</h4>
     </div>
     <div class="toggle-section">
       <button @click="toggleMessage">Toggle Message</button>
@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import eventBus from './event-track';
 import './assets/styles.css';
 
 export default {
@@ -28,19 +29,18 @@ export default {
   setup() {
     const counter = ref(0);
     const showMessage = ref(false);
-
-    const incrementCounter = () => {
-      counter.value++;
-    };
-
-    const toggleMessage = () => {
+    function toggleMessage() {
       showMessage.value = !showMessage.value;
-    };
+      eventBus.incrementCounter();
+    }
+
+    onMounted(() => {
+      counter.value = eventBus.counter.value;
+    });
 
     return {
-      counter,
+      counter: eventBus.counter,
       showMessage,
-      incrementCounter,
       toggleMessage,
     };
   },
